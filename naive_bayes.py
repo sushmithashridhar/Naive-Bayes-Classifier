@@ -1,3 +1,5 @@
+#SUSHMITHA SHRIDHAR
+#MACHINE LEARNING PROGRAMMING #2
 import numpy as np
 
 from sklearn.model_selection import train_test_split
