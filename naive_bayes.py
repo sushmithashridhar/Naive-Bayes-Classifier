@@ -70,3 +70,25 @@ for i in range(len(train_sdv_spam)):
 
 	if (train_sdv_not_spam[i] == 0):
 		train_sdv_not_spam[i] = standard_deviation
+
+
+########################################################## NAIVE BAYES ON THE TEST DATA ################################################
+
+
+#Using the Gaussian Naive Bayes algorithm to classify the instances in our test set
+def gaussian(x,mean,standard_deviation):
+	N = float(1/(np.sqrt(2*np.pi)*standard_deviation)) * float(np.exp(-((x-mean)**2)/(2*float(standard_deviation*standard_deviation))))
+	return N
+
+
+for row in range(len(test_input)):
+	prob_spam = np.log(train_probability_spam)
+	prob_not_spam = np.log(train_probability_not_spam)
+
+	for feature in range(0,total_features):
+		x = test_input[row][feature]
+		prob_spam += np.log(gaussian(x, train_mean_spam[feature], train_sdv_spam[feature]))
+		prob_not_spam += np.log(gaussian(x, train_mean_not_spam[feature], train_sdv_not_spam[feature]))
+	
+	class_x = np.argmax([prob_not_spam, prob_spam])
+	result.append(class_x)
