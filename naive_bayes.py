@@ -49,7 +49,7 @@ for feature in range(0,total_features):
 		if (train_target[row] == 1):
 #If the value of the train input is 1, it is spam, hence we are seperating out the spam and not-spam
 			spam_data.append(train_input[row][feature])
-		else:                         #not spam class
+		else:
 			nspam_data.append(train_input[row][feature])
 #Finding the mean of train spam set
 	train_mean_spam.append(np.mean(spam_data))
