@@ -92,3 +92,39 @@ for row in range(len(test_input)):
 	
 	class_x = np.argmax([prob_not_spam, prob_spam])
 	result.append(class_x)
+
+#Confusion matrix for the test set
+cfm = confusion_matrix(test_target, result)
+
+print "\n"
+print "Confusion Matrix for the test set:"
+print cfm
+print("\n")
+
+
+
+for row in range(len(result)):
+	if (result[row] == 1 and test_target[row] == 1):
+		TP += 1
+	elif (result[row] == 0 and test_target[row] == 0 ):
+		TN += 1
+	elif (result[row] == 1 and test_target[row] == 0 ):
+		FP += 1
+	else:
+		FN += 1
+
+#Calculating Accuracy , precision and recall.
+accuracy = float(TP + TN)/(TP+TN+FP+FN)
+print "Accuracy : "
+print accuracy
+print "\n"
+
+precision = float(TP)/(TP+FP)
+print "Precision: "
+print precision
+print "\n"
+
+recall = float(TP)/(TP+FN)
+print "Recall: "
+print recall
+print "\n"
